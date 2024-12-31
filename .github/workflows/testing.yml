@@ -22,8 +22,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Install dependencies with Maven
+        run: mvn clean install
+
       - name: Run tests with Maven
-        run: mvn clean verify jacoco:report
+        run: mvn verify jacoco:report
 
       - name: Upload backend coverage report artifact
         uses: actions/upload-artifact@v4
@@ -33,37 +36,37 @@ jobs:
           retention-days: 7
   
 
-  # frontend:
-  #   runs-on: ubuntu-latest
-  #   defaults:
-  #     run:
-  #       working-directory: ./front
-  #   steps:
-  #     - name: Check out repository code
-  #       uses: actions/checkout@v4
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
 
-  #     - name: Set up Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 22
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-  #     - name: Install dependencies
-  #       run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-  #     - name: Install Chrome browser
-  #       id: install_chrome
-  #       uses: browser-actions/setup-chrome@v1
-  #       with:
-  #         install-dependencies: true
+      - name: Install Chrome browser
+        id: install_chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          install-dependencies: true
 
-  #     - name: Run tests with coverage
-  #       env:
-  #         CHROME_BIN: ${{ steps.install_chrome.outputs.chrome-path }}
-  #       run: npm test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
+      - name: Run tests with coverage
+        env:
+          CHROME_BIN: ${{ steps.install_chrome.outputs.chrome-path }}
+        run: npm test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
 
-  #     - name: Upload frontend coverage report artifact
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: frontend-coverage
-  #         path: front/coverage
-  #         retention-days: 7
+      - name: Upload frontend coverage report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: front/coverage
+          retention-days: 7
