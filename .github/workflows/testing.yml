@@ -9,46 +9,46 @@ on:
     branches: [ "main" ]
 jobs:
 
-  backend:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./back
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Install dependencies with Maven
-        run: mvn clean install
-
-      - name: Run tests with Maven
-        run: mvn verify jacoco:report
-
-      # - name: Upload backend coverage report artifact
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: backend-coverage
-      #    path: ./target/site
-      #    retention-days: 7
-      # - name: Debug folder structure
-      #  run: ls
-
-      # - name: Move coverage to subfolder
-      #  run: mv ./target/site ./coverage-backend
-
-      - name: Publish coverage report to Github Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./back/target/site
-          destination_dir: ./coverage-backend
+#  backend:
+#    runs-on: ubuntu-latest
+#    defaults:
+#      run:
+#        working-directory: ./back
+#    steps:
+#      - name: Check out repository code
+#        uses: actions/checkout@v4
+#
+#      - name: Set up JDK 17
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: '17'
+#          distribution: 'temurin'
+#          cache: maven
+#
+#      - name: Install dependencies with Maven
+#        run: mvn clean install
+#
+#      - name: Run tests with Maven
+#        run: mvn verify jacoco:report
+#
+#      - name: Upload backend coverage report artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: backend-coverage
+#          path: ./target/site
+#          retention-days: 7
+#      - name: Debug folder structure
+#        run: ls
+#
+#      # - name: Move coverage to subfolder
+#      #  run: mv ./target/site ./coverage-backend
+#
+#      - name: Publish coverage report to Github Pages
+#        uses: peaceiris/actions-gh-pages@v4
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ./back/target/site/jacoco
+#          destination_dir: ./coverage-backend
   
 
   frontend:
@@ -85,7 +85,10 @@ jobs:
       #    retention-days: 7
 
       - name: Debug folder structure
-        run: ls coverage
+        run: |
+          ls coverage
+          pwd
+          cwd
 
       # - name: Move coverage to subfolder
       #  run: mv ./coverage ./coverage-frontend
