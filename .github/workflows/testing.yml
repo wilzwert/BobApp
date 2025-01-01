@@ -47,7 +47,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./back/target/site
+          publish_dir: ./target/site
           destination_dir: ./coverage-backend
   
 
@@ -94,5 +94,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./front/coverage
+          publish_dir: ./coverage
           destination_dir: ./coverage-frontend
