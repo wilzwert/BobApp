@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: backend-coverage
-          path: ./target/site
+          path: ./back/target/site/jacoco
           retention-days: 7
 
       - name: Publish backend coverage report to Github Pages
@@ -81,7 +81,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frontend-coverage
-          path: ./coverage
+          path: ./front/coverage/bobapp
           retention-days: 7
 
       - name: Publish frontend coverage report to Github Pages
