@@ -1,9 +1,15 @@
 # BobApp
 
 ## Coverage
-[![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU)](https://codecov.io/github/wilzwert/BobApp)
+
+### Backend
+[![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU&flag=backend)](https://codecov.io/github/wilzwert/BobApp)
 
 [Backend coverage report](https://wilzwert.github.io/BobApp/coverage-backend/)
+
+### Frontend
+
+Frontend coverage : [![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU&flag=frontend)](https://codecov.io/github/wilzwert/BobApp)
 
 [Frontend coverage report](https://wilzwert.github.io/BobApp/coverage-frontend/)
 
