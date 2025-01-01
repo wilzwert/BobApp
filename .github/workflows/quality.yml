@@ -1,6 +1,6 @@
 name: Running quality analysis
 concurrency:
-  group: ${{ github.ref }}
+  group: ${{ github.ref }}.quality
   cancel-in-progress: true
 on:
   pull_request:
