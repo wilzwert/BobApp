@@ -37,6 +37,15 @@ jobs:
           name: backend-coverage
           path: back/target/site
           retention-days: 7
+
+      - name: Move coverage to subfolder
+        run: mv back/target/site ./coverage-report/backend
+
+      - name: Publish coverage report to Github Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./coverage-report/backend
   
 
   frontend:
@@ -71,3 +80,12 @@ jobs:
           name: frontend-coverage
           path: front/coverage
           retention-days: 7
+
+      - name: Move coverage to subfolder
+        run: mv front/coverage ./coverage-report/frontend
+  
+      - name: Publish coverage report to Github Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./coverage-report/frontend
