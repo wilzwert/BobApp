@@ -1,0 +1,71 @@
+name: Running quality analysis
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+jobs:
+
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./back
+    steps:
+      - name: Check out  repository code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Install dependencies with Maven
+        run: mvn clean install
+
+      # Run SonarQube analysis
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
+        with:
+          args: >
+            -Dsonar.organization=wilzwert
+            -Dsonar.projectKey=wilzwert_BobApp_backend
+            -Dproject.settings=./sonar-project-backend.properties
+            
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front
+    steps:
+      - name: Check out  repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Run SonarQube analysis
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONTEND }}
+        with:
+          args: >
+            -Dsonar.organization=wilzwert
+            -Dsonar.projectKey=wilzwert_BobApp_frontend
+            -Dproject.settings=./sonar-project-frontend.properties
+            
+
