@@ -1,8 +1,5 @@
 # BobApp
 
-## CI / CD
-![GitHub CI](https://github.com/dwyl/auth_plug/actions/workflows/ci.yml/badge.svg)
-
 ## Coverage
 [![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU)](https://codecov.io/github/wilzwert/BobApp)
 
