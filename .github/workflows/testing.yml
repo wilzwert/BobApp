@@ -40,14 +40,15 @@ jobs:
       - name: Debug folder structure
         run: ls
 
-      - name: Move coverage to subfolder
-        run: mv target/site ./coverage-backend
+      # - name: Move coverage to subfolder
+      #  run: mv ./target/site ./coverage-backend
 
       - name: Publish coverage report to Github Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./coverage-backend
+          publish_dir: ./target/site
+          destination_dir: ./coverage-backend
   
 
   frontend:
@@ -86,11 +87,12 @@ jobs:
       - name: Debug folder structure
         run: ls
 
-      - name: Move coverage to subfolder
-        run: mv ./coverage ./coverage-frontend
+      # - name: Move coverage to subfolder
+      #  run: mv ./coverage ./coverage-frontend
   
       - name: Publish coverage report to Github Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./coverage-frontend
+          publish_dir: ./coverage
+          destination_dir: ./coverage-frontend
