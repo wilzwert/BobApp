@@ -91,7 +91,7 @@ jobs:
           publish_dir: ./front/coverage/bobapp
           destination_dir: ./coverage-frontend
 
-      - name: Upload coverage reports to Codecov
+      - name: Upload frontend coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
