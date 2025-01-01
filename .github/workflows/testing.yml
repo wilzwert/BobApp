@@ -31,14 +31,14 @@ jobs:
       - name: Run tests with Maven
         run: mvn verify jacoco:report
 
-      - name: Upload backend coverage report artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: backend-coverage
-          path: ./target/site
-          retention-days: 7
-      - name: Debug folder structure
-        run: ls
+      # - name: Upload backend coverage report artifact
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: backend-coverage
+      #    path: ./target/site
+      #    retention-days: 7
+      # - name: Debug folder structure
+      #  run: ls
 
       # - name: Move coverage to subfolder
       #  run: mv ./target/site ./coverage-backend
@@ -47,7 +47,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./target/site
+          publish_dir: ./back/target/site
           destination_dir: ./coverage-backend
   
 
@@ -77,12 +77,12 @@ jobs:
           CHROME_BIN: ${{ steps.install-chrome.outputs.chrome-path }}
         run: npm test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
 
-      - name: Upload frontend coverage report artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-coverage
-          path: ./coverage
-          retention-days: 7
+      # - name: Upload frontend coverage report artifact
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: frontend-coverage
+      #    path: ./coverage
+      #    retention-days: 7
 
       - name: Debug folder structure
         run: ls
@@ -94,5 +94,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./coverage
+          publish_dir: ./front/coverage
           destination_dir: ./coverage-frontend
