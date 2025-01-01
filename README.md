@@ -9,7 +9,7 @@
 
 ### Frontend
 
-Frontend coverage : [![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU&flag=frontend)](https://codecov.io/github/wilzwert/BobApp)
+[![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU&flag=frontend)](https://codecov.io/github/wilzwert/BobApp)
 
 [Frontend coverage report](https://wilzwert.github.io/BobApp/coverage-frontend/)
 
