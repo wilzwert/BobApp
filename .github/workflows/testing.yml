@@ -88,7 +88,6 @@ jobs:
         run: |
           ls coverage
           pwd
-          cwd
 
       # - name: Move coverage to subfolder
       #  run: mv ./coverage ./coverage-frontend
@@ -97,5 +96,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./coverage
+          publish_dir: ./front/coverage
           destination_dir: ./coverage-frontend
