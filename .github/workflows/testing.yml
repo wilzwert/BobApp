@@ -85,7 +85,7 @@ jobs:
       #    retention-days: 7
 
       - name: Debug folder structure
-        run: ls
+        run: ls coverage
 
       # - name: Move coverage to subfolder
       #  run: mv ./coverage ./coverage-frontend
