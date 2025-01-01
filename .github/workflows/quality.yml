@@ -28,7 +28,7 @@ jobs:
           cache: maven
 
       - name: Install dependencies with Maven
-        run: mvn clean install
+        run: mvn clean install verify
 
       # Run SonarQube analysis
       - name: SonarQube Scan
