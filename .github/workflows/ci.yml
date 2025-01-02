@@ -34,7 +34,7 @@ jobs:
       - name: Verify coverage report existence and stop if missing
         run: |
           pwd
-          ls
+          ls          
           if [ ! -f "./target/site/jacoco/jacoco.xml" ]; then          
            echo "Error: File 'back/target/site/jacoco/jacoco.xml' not found. Stopping pipeline."
            exit 1
