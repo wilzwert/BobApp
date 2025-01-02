@@ -33,7 +33,9 @@ jobs:
       # if jacoco report doesn't exist, we can't go further
       - name: Verify coverage report existence and stop if missing
         run: |
-          if [ ! -f "back/target/site/jacoco/jacoco.xml" ]; then          
+          pwd
+          ls
+          if [ ! -f "./target/site/jacoco/jacoco.xml" ]; then          
            echo "Error: File 'back/target/site/jacoco/jacoco.xml' not found. Stopping pipeline."
            exit 1
           fi
