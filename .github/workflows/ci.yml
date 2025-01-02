@@ -1,6 +1,6 @@
 name: CI - Tests and quality analysis
 concurrency:
-  group: ${{ github.ref }}
+  group: ${{ github.ref }}.ci
   cancel-in-progress: true
 on:
   pull_request:

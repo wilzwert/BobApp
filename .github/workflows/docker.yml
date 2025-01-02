@@ -1,6 +1,6 @@
 name: Build and push Docker images
 concurrency:
-  group: ${{ github.ref }}
+  group: ${{ github.ref }}.docker
   cancel-in-progress: true
 on:
   push:
