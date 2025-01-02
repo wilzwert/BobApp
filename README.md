@@ -1,7 +1,7 @@
 # BobApp
 
-[![CI - Tests and quality analysis](https://github.com/wilzwert/BobApp/actions/workflows/ci.yml/badge.svg)](https://github.com/wilzwert/BobApp/actions/workflows/ci.yml)
-[![Build and push Docker images](https://github.com/wilzwert/BobApp/actions/workflows/docker.yml/badge.svg)](https://github.com/wilzwert/BobApp/actions/workflows/docker.yml)
+[![CI - Tests and quality analysis](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/ci.yml?label=CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/ci.yml)
+[![Build and push Docker images](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/docker.yml?label=Docker%20Build&logo=Docker)](https://github.com/wilzwert/BobApp/actions/workflows/docker.yml)
 
 ## Backend
 [![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU&flag=backend)](https://codecov.io/github/wilzwert/BobApp)
