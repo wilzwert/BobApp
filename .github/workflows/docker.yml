@@ -25,7 +25,7 @@ jobs:
         id: backend-metadata-extraction
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.repository }}-backend
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/bobapp-backend
           tags: |
             latest
             type=ref,event=branch
@@ -36,7 +36,7 @@ jobs:
         id: frontend-metadata-extraction
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.repository }}-frontend
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/bobapp-frontend
           tags: |
             latest
             type=ref,event=branch
