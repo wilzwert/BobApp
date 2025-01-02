@@ -1,15 +1,18 @@
 # BobApp
 
-## Coverage
+[![CI - Tests and quality analysis](https://github.com/wilzwert/BobApp/actions/workflows/ci.yml/badge.svg)](https://github.com/wilzwert/BobApp/actions/workflows/ci.yml)
+[![Build and push Docker images](https://github.com/wilzwert/BobApp/actions/workflows/docker.yml/badge.svg)](https://github.com/wilzwert/BobApp/actions/workflows/docker.yml)
 
-### Backend
+## Backend
 [![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU&flag=backend)](https://codecov.io/github/wilzwert/BobApp)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=wilzwert_BobApp_backend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=wilzwert_BobApp_backend)
 
 [Backend coverage report](https://wilzwert.github.io/BobApp/coverage-backend/)
 
-### Frontend
+## Frontend
 
 [![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU&flag=frontend)](https://codecov.io/github/wilzwert/BobApp)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=wilzwert_BobApp_frontend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=wilzwert_BobApp_frontend)
 
 [Frontend coverage report](https://wilzwert.github.io/BobApp/coverage-frontend/)
 
