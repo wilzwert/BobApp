@@ -2,17 +2,12 @@
 
 [![CI - Tests and quality analysis](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/ci.yml?label=CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/ci.yml)
 [![Build and push Docker images](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/docker.yml?label=Docker%20Build&logo=Docker)](https://github.com/wilzwert/BobApp/actions/workflows/docker.yml)
-
-## Backend
-[![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU&flag=backend)](https://codecov.io/github/wilzwert/BobApp)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=wilzwert_BobApp_backend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=wilzwert_BobApp_backend)
+[![Frontend coverage](https://img.shields.io/codecov/c/github/wilzwert/BobApp?flag=backend&label=Backend%20coverage&logo=JUnit5)](https://wilzwert.github.io/BobApp/coverage-backend/)
+[![Backend Quality Gate Status](https://img.shields.io/sonar/quality_gate/wilzwert_BobApp_backend?server=https%3A%2F%2Fsonarcloud.io&logo=sonarcloud&label=Backend%20quality%20gate)](https://sonarcloud.io/summary/new_code?id=wilzwert_BobApp_backend)
+[![Frontend coverage](https://img.shields.io/codecov/c/github/wilzwert/BobApp?flag=frontend&label=Frontend%20coverage&logo=Jasmine)](https://wilzwert.github.io/BobApp/coverage-frontend/)
+[![Frontend Quality Gate Status](https://img.shields.io/sonar/quality_gate/wilzwert_BobApp_frontend?server=https%3A%2F%2Fsonarcloud.io&logo=sonarcloud&label=Frontend%20quality%20gate)](https://sonarcloud.io/summary/new_code?id=wilzwert_BobApp_frontend)
 
 [Backend coverage report](https://wilzwert.github.io/BobApp/coverage-backend/)
-
-## Frontend
-
-[![codecov](https://codecov.io/github/wilzwert/BobApp/branch/main/graph/badge.svg?token=2RG4Z3WHJU&flag=frontend)](https://codecov.io/github/wilzwert/BobApp)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=wilzwert_BobApp_frontend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=wilzwert_BobApp_frontend)
 
 [Frontend coverage report](https://wilzwert.github.io/BobApp/coverage-frontend/)
 
