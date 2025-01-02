@@ -30,7 +30,15 @@ module.exports = function (config) {
       reporters: [
         { type: 'lcov' },
         { type: 'text-summary' }
-      ]
+      ],
+      check: {
+        global: {
+          statements: 75,
+          branches: 75,
+          functions: 75,
+          lines: 75,
+        },
+      },
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
