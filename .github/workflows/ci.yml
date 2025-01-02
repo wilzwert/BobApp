@@ -1,4 +1,4 @@
-name: Tests and quality analysis
+name: CI - Tests and quality analysis
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
