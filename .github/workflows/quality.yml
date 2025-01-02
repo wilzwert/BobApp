@@ -61,6 +61,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Chrome browser
+        id: install-chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Run tests with coverage
+        env:
+          CHROME_BIN: ${{ steps.install-chrome.outputs.chrome-path }}
+        run: npm test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
+
       # Run SonarQube analysis
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v4
