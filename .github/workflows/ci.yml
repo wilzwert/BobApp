@@ -36,7 +36,7 @@ jobs:
           if [ ! -f "back/target/site/jacoco/jacoco.xml" ]; then          
            echo "Error: File 'back/target/site/jacoco/jacoco.xml' not found. Stopping pipeline."
            exit 1
-         fi
+          fi
         shell: bash
 
       - name: Upload backend coverage report artifact
