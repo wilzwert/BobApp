@@ -128,7 +128,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./front/coverage/bobapp
+          publish_dir: ./front/coverage/bobapp/lcov-report
           destination_dir: ./coverage-frontend
 
       - name: Upload frontend coverage report to Codecov
