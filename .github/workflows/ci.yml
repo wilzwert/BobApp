@@ -82,7 +82,7 @@ jobs:
         continue-on-error: true
 
       # fail job if requirements not met
-      - name: Fail job if needed
+      - name: Check requirements
         if: ${{ steps.run-tests.outcome == 'failure' || steps.quality-gate.outcome == 'failure'}}
         run: |
           echo "Job failed :"
@@ -172,7 +172,7 @@ jobs:
         continue-on-error: true
 
       # fail job if requirements not met
-      - name: Fail job if needed
+      - name: Check requirements
         if: ${{ steps.run-tests.outcome == 'failure' || steps.quality-gate.outcome == 'failure'}}
         run: |
           echo "Job failed :"
