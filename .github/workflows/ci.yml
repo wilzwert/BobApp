@@ -61,9 +61,9 @@ jobs:
           flags: backend
 
       # Run SonarQube analysis
-      # only if tests succeeded and checks have been met
       - name: SonarQube Scan
-        # it may be interesting to prevent SonarQube from running if requirements have not been met
+        id: sonar-scan
+        # it may be interesting to prevent SonarQube from running if previous requirements have not been met
         # if: steps.run-tests.outcome == 'success'
         uses: SonarSource/sonarqube-scan-action@v4
         env:
@@ -74,11 +74,23 @@ jobs:
             -Dsonar.projectKey=wilzwert_BobApp_backend
             -Dproject.settings=./sonar-project-backend.properties
 
+      - name: Quality Gate Check
+        id: quality-gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
+
       # fail job if requirements not met
       - name: Fail job if needed
-        if: steps.run-tests.outcome == 'failure'
+        if: ${{ steps.run-tests.outcome == 'failure' || steps.sonar-scan.outcome == 'failure'}}
         run: |
-          echo "Job failed : coverage checks have not been met. See step 'Run tests and generate coverage report' output, and coverage report"
+          echo "Job failed :"
+          if [ "${{ steps.run-tests.outcome }}" == "failure" ]; then
+            echo "Coverage checks or have not been met. See step 'Run tests and generate coverage report' output, and coverage report"
+          fi
+          if [ "${{ steps.sonar-scan.outcome }}" == "failure" ]; then
+            echo "Code quality gate check failed. See step 'SonarQube Scan'"
+          fi
           exit 1
 
   frontend:
@@ -151,9 +163,21 @@ jobs:
            -Dsonar.projectKey=wilzwert_BobApp_frontend
            -Dproject.settings=./sonar-project-frontend.properties
 
+      - name: Quality Gate Check
+        id: quality-gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
+
       # fail job if requirements not met
       - name: Fail job if needed
-        if: steps.run-frontend-tests.outcome == 'failure'
+        if: ${{ steps.run-tests.outcome == 'failure' || steps.sonar-scan.outcome == 'failure'}}
         run: |
-          echo "Job failed : coverage checks have not been met. See step 'Run tests with coverage' output, and coverage report"
+          echo "Job failed :"
+          if [ "${{ steps.run-tests.outcome }}" == "failure" ]; then
+            echo "Coverage checks or have not been met. See step 'Run tests and generate coverage report' output, and coverage report"
+          fi
+          if [ "${{ steps.sonar-scan.outcome }}" == "failure" ]; then
+            echo "Code quality gate check failed. See step 'SonarQube Scan'"
+          fi
           exit 1
