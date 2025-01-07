@@ -1,0 +1,144 @@
+name: Frontend - Tests, analysis and docker build
+concurrency:
+  group: ${{ github.ref }}.frontend
+  cancel-in-progress: true
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+jobs:
+
+  frontend-tests-analysis:
+    name: Run frontend tests and quality analysis
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Chrome browser
+        id: install-chrome
+        uses: browser-actions/setup-chrome@v1
+       
+      - name: Run tests with coverage
+        id: run-frontend-tests
+        env:
+          CHROME_BIN: ${{ steps.install-chrome.outputs.chrome-path }}
+        run: npm test -- --code-coverage --watch=false --browsers=ChromeHeadlessCI
+        continue-on-error: true # some steps must be executed even in case on failure
+
+      # if coverage report doesn't exist, we can't go further
+      - name: Verify coverage report existence and stop if missing
+        run: |
+          if [ ! -f "./coverage/bobapp/lcov.info" ]; then          
+           echo "Error: File 'coverage/bobapp/lcov.info' not found. Job failed."
+           exit 1
+          fi
+        shell: bash
+
+      - name: Upload frontend coverage report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: ./front/coverage/bobapp
+          retention-days: 7
+
+      - name: Publish frontend coverage report to Github Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./front/coverage/bobapp/lcov-report
+          destination_dir: ./coverage-frontend
+
+      - name: Upload frontend coverage report to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: frontend
+
+      # Run SonarQube analysis
+      - name: SonarQube Scan
+        # it may be interesting to prevent SonarQube from running if requirements have not been met
+        # if: steps.run-frontend-tests.outcome == 'success'
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FRONTEND }}
+        with:
+          args: >
+           -Dsonar.organization=wilzwert
+           -Dsonar.projectKey=wilzwert_BobApp_frontend
+           -Dproject.settings=./sonar-project-frontend.properties
+
+      - name: Quality Gate Check
+        id: quality-gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
+        continue-on-error: true
+
+      # fail job if requirements not met
+      - name: Check requirements
+        if: ${{ steps.run-frontend-tests.outcome == 'failure' || steps.quality-gate.outcome == 'failure'}}
+        run: |
+          echo "Job failed :"
+          if [ "${{ steps.run-frontend-tests.outcome }}" == "failure" ]; then
+            echo "Coverage checks or have not been met. See step 'Run tests and generate coverage report' output, and coverage report"
+          fi
+          if [ "${{ steps.quality-gate.outcome }}" == "failure" ]; then
+            echo "Code quality gate check failed. See step 'SonarQube Scan'"
+          fi
+          exit 1
+
+  frontend-build-and-push:
+    name: Build and push frontend docker image
+    needs: frontend-tests-analysis
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout repository
+        uses: actions/checkout@v4
+
+      -
+        name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Extract frontend docker metadata
+        id: frontend-metadata-extraction
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/bobapp-frontend
+          tags: |
+            latest
+            type=ref,event=branch
+            type=ref,event=tag
+            type=sha,format=long
+      
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./front
+          file: ./front/Dockerfile
+          push: true
+          tags: ${{ steps.frontend-metadata-extraction.outputs.tags }}
+          labels: ${{ steps.frontend-metadata-extraction.outputs.labels }}
+          cache-from: type=gha # use previous builds github action cache
+          cache-to: type=gha,mode=max
