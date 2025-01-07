@@ -94,7 +94,7 @@ jobs:
         run: |
           echo "Job failed :"
           if [ "${{ steps.run-frontend-tests.outcome }}" == "failure" ]; then
-            echo "Coverage checks or have not been met. See step 'Run tests and generate coverage report' output, and coverage report"
+            echo "Coverage checks have not been met. See step 'Run tests and generate coverage report' output, and coverage report"
           fi
           if [ "${{ steps.quality-gate.outcome }}" == "failure" ]; then
             echo "Code quality gate check failed. See step 'SonarQube Scan'"
