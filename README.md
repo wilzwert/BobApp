@@ -33,6 +33,7 @@
     - [Frontend code quality analysis with SonarQube](#frontend-code-quality-analysis-with-sonarqube)
     - [Backend code coverage](#backend-code-coverage)
     - [Backend code quality analysis with SonarQube](#backend-code-quality-analysis-with-sonarqube)
+  - [User reviews and issues](#user-reviews-and-issues)
   
       
 
