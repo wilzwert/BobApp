@@ -1,7 +1,10 @@
 # BobApp
 
-[![Frontend CI/CD](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/frontend.yml?label=Frontend%20CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/frontend.yml)
-[![Backend CI/CD](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/backend.yml?label=Backend%20CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/backend.yml)
+[![Frontend CI](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/ci-frontend.yml?label=Frontend%20CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/ci-frontend.yml)
+[![Backend CI](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/ci-backend.yml?label=Backend%20CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/ci-backend.yml)
+[![Frontend CD](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/ci-frontend.yml?label=Frontend%20CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/ci-frontend.yml)
+[![Backend CD](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/ci-backend.yml?label=Backend%20CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/ci-backend.yml)
+
 [![Backend coverage](https://img.shields.io/codecov/c/github/wilzwert/BobApp?flag=backend&label=Backend%20coverage&logo=JUnit5)](https://wilzwert.github.io/BobApp/coverage-backend/)
 [![Backend Quality Gate Status](https://img.shields.io/sonar/quality_gate/wilzwert_BobApp_backend?server=https%3A%2F%2Fsonarcloud.io&logo=sonarcloud&label=Backend%20quality%20gate)](https://sonarcloud.io/summary/new_code?id=wilzwert_BobApp_backend)
 [![Frontend coverage](https://img.shields.io/codecov/c/github/wilzwert/BobApp?flag=frontend&label=Frontend%20coverage&logo=Jasmine)](https://wilzwert.github.io/BobApp/coverage-frontend/)
@@ -186,12 +189,12 @@ A single job `backend-build-and-push` is set up. It is executed when the CI work
 ### Frontend code coverage
 
 Code coverage requirements for tests are set up as follows in `./front/karma.conf.js`: 
-```json
-  statements: 75, 
+``` 
+  statements: 75,
   branches: 75,
   functions: 50,
   lines: 75
-```
+ ```
 
 > [!NOTE]
 > As of now current values allow code updates for the current application, but as the overall code quality progresses, we should increase these values to 80%.
