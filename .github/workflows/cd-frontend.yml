@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Extract frontend docker metadata
+      - name: Extract frontend docker image metadata
         id: frontend-metadata-extraction
         uses: docker/metadata-action@v5
         with:
