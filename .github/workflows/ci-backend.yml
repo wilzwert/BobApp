@@ -87,7 +87,7 @@ jobs:
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
         run: |
           mkdir .scannerwork
-          cp -Rp target/sonar .scannerwork
+          cp -Rp target/sonar/* .scannerwork/
           ls -lah .scannerwork
         shell: bash
 
