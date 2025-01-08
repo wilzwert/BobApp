@@ -83,10 +83,12 @@ jobs:
             -Dsonar.token=${{ secrets.SONAR_TOKEN_BACKEND }} \
             -Dproject.settings=../sonar-project-backend.properties
 
-      - name: Debug pwd and directories
+      - name: Make sonar output available to Quality Gate Check
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
         run: |
-          pwd
-          ls -lah
+          mkdir .scannerwork
+          cp -Rp target/sonar .scannerwork
+          ls -lah .scannerwork
         shell: bash
 
       # quality gate check is performed only when code has actually been pushed to main branch, or if workflow is run manually
