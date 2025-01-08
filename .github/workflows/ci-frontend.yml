@@ -107,7 +107,7 @@ jobs:
             -Dsonar.pullrequest.branch=${{ github.head_ref }} \
             -Dsonar.pullrequest.base=${{ github.base_ref }}
 
-      - name: Quality Gate Check
+      - name: SonarQube Quality Gate Check
         id: quality-gate
         uses: sonarsource/sonarqube-quality-gate-action@master
         env:
@@ -124,6 +124,6 @@ jobs:
             echo "Coverage checks have not been met. See step 'Run tests and generate coverage report' output, and coverage report"
           fi
           if [ "${{ steps.quality-gate.outcome }}" == "failure" ]; then
-            echo "Code quality gate check failed. See step 'SonarQube Scan'"
+            echo "Code quality gate check failed. See step 'SonarQube Quality Gate Check'"
           fi
           exit 1

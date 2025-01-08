@@ -1,9 +1,9 @@
 # BobApp
 
 [![Frontend CI](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/ci-frontend.yml?label=Frontend%20CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/ci-frontend.yml)
+[![Frontend CD](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/cd-frontend.yml?label=Frontend%20CD&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/cd-frontend.yml)
 [![Backend CI](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/ci-backend.yml?label=Backend%20CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/ci-backend.yml)
-[![Frontend CD](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/ci-frontend.yml?label=Frontend%20CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/ci-frontend.yml)
-[![Backend CD](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/ci-backend.yml?label=Backend%20CI&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/ci-backend.yml)
+[![Backend CD](https://img.shields.io/github/actions/workflow/status/wilzwert/BobApp/cd-backend.yml?label=Backend%20CD&logo=Github)](https://github.com/wilzwert/BobApp/actions/workflows/cd-backend.yml)
 
 [![Backend coverage](https://img.shields.io/codecov/c/github/wilzwert/BobApp?flag=backend&label=Backend%20coverage&logo=JUnit5)](https://wilzwert.github.io/BobApp/coverage-backend/)
 [![Backend Quality Gate Status](https://img.shields.io/sonar/quality_gate/wilzwert_BobApp_backend?server=https%3A%2F%2Fsonarcloud.io&logo=sonarcloud&label=Backend%20quality%20gate)](https://sonarcloud.io/summary/new_code?id=wilzwert_BobApp_backend)
