@@ -1,9 +1,11 @@
-name: Frontend - Tests, analysis and docker build
+name: Frontend CI - Tests and analysis
 concurrency:
   group: ${{ github.ref }}.frontend
   cancel-in-progress: true
 on:
+  # CI should be able to run manually
   workflow_dispatch:
+  # CI should run on pull requests and push on main branch
   pull_request:
     branches: [ "main" ]
   push:
