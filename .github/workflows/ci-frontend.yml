@@ -90,15 +90,6 @@ jobs:
            -Dsonar.projectKey=wilzwert_BobApp_frontend
            -Dproject.settings=./sonar-project-frontend.properties
 
-      # quality gate check is performed only when code has actually been pushed to main branch, or if workflow is run manually
-      - name: Quality Gate Check
-        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
-        id: quality-gate
-        uses: sonarsource/sonarqube-quality-gate-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
-        continue-on-error: true
-
       # Run SonarQube analysis on pull request
       - name: SonarQube Scan on pull request
         if: ${{ github.event_name == 'pull_request' }}
@@ -115,6 +106,13 @@ jobs:
             -Dsonar.pullrequest.key=${{ github.event.pull_request.number }} \
             -Dsonar.pullrequest.branch=${{ github.head_ref }} \
             -Dsonar.pullrequest.base=${{ github.base_ref }}
+
+      - name: Quality Gate Check
+        id: quality-gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
+        continue-on-error: true
 
       # fail job if coverage requirements not met
       # this allows to explicitly specify what went wrong, as we used continue-on-error previously

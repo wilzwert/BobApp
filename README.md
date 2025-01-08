@@ -117,8 +117,8 @@ A single job `frontend-tests-analysis` is set up, and here are the job's steps :
 8. Publish frontend coverage report to GitHub Pages.`push` `workflow_dispatch`  *We want Pages to reflect the actual main branch coverage state.*
 9. Upload frontend coverage report to Codecov. `push` `workflow_dispatch`  *We want Codecov to reflect the actual main branch coverage state.*
 10. SonarQube Scan on push to main. `push` `workflow_dispatch` *In that case, the analysis is run on the overall codebase, and is reflected by the badge in this README.*
-11. Quality Gate Check. `push` `workflow_dispatch` *Quality gate check is performed only when code has actually been pushed to main branch and is reflected on the badge in this README.*
-12. SonarQube Scan on pull request. `pull_request` *In that case, the analysis is run on new code only, and adds a comment to the PR.* 
+11. SonarQube Scan on pull request. `pull_request` *In that case, the analysis is run on new code only, and adds a comment to the PR.*
+12. SonarQube Quality Gate Check
 13. Check requirements : fail job if coverage requirements not met. This allows to explicitly specify what went wrong, as we used continue-on-error previously.
 
 > [!NOTE]
@@ -162,8 +162,8 @@ A single job `backend-tests-analysis` is set up, and here are the job's steps :
 7. Publish backend coverage report to GitHub Pages.`push` `workflow_dispatch`*We want Pages to reflect the actual main branch coverage state.*
 8. Upload backend coverage report to Codecov. `push` `workflow_dispatch` *We want Codecov to reflect the actual main branch coverage state.*
 9. SonarQube Scan on push to main.`push` `workflow_dispatch` *In that case, the analysis is run on the overall codebase, and is reflected by the badge in this README.*
-10. Quality Gate Check. `push` `workflow_dispatch` *Quality gate check is performed only when code has actually been pushed to main branch and is reflected on the badge in this README.*
-11. SonarQube Scan on pull request. `pull_request` *In that case, the analysis is run on new code only, and adds a comment to the PR.*
+10. SonarQube Scan on pull request. `pull_request` *In that case, the analysis is run on new code only, and adds a comment to the PR.*
+11. SonarQube Quality Gate Check.
 12. Check requirements : fail job if coverage requirements not met. This allows to explicitly specify what went wrong, as we used continue-on-error previously.
 
 > [!NOTE]
