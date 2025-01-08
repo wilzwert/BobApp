@@ -75,14 +75,13 @@ jobs:
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
         # it may be interesting to prevent SonarQube from running if previous requirements have not been met
         # if: steps.run-tests.outcome == 'success'
-        uses: SonarSource/sonarqube-scan-action@v4
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
-        with:
-          args: >
-            -Dsonar.organization=wilzwert
-            -Dsonar.projectKey=wilzwert_BobApp_backend
-            -Dproject.settings=./sonar-project-backend.properties
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.host.url=https://sonarcloud.io \          
+            -Dsonar.organization=wilzwert \
+            -Dsonar.projectKey=wilzwert_BobApp_backend \
+            -Dsonar.token=${{ secrets.SONAR_TOKEN_BACKEND }} \
+            -Dproject.settings=../sonar-project-backend.properties
 
       # quality gate check is performed only when code has actually been pushed to main branch, or if workflow is run manually
       - name: Quality Gate Check
@@ -98,11 +97,10 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         # it may be interesting to prevent SonarQube from running if previous requirements have not been met
         # if: steps.run-tests.outcome == 'success'
-        uses: SonarSource/sonarqube-scan-action@v4
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
-        with:
-          args: >
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.host.url=https://sonarcloud.io \        
+            -Dsonar.token=${{ secrets.SONAR_TOKEN_BACKEND }} \
             -Dsonar.organization=wilzwert
             -Dsonar.projectKey=wilzwert_BobApp_backend
             -Dproject.settings=./sonar-project-backend.properties
@@ -110,7 +108,7 @@ jobs:
             -Dsonar.pullrequest.branch=${{ github.head_ref }} \
             -Dsonar.pullrequest.base=${{ github.base_ref }}
 
-            # fail job if coverage requirements not met
+      # fail job if coverage requirements not met
       # this allows to explicitly specify what went wrong, as we used continue-on-error previously
       - name: Check requirements
         if: ${{ steps.run-backend-tests.outcome == 'failure' || steps.quality-gate.outcome == 'failure'}}
