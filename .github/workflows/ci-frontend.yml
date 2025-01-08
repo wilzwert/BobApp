@@ -90,7 +90,7 @@ jobs:
            -Dsonar.projectKey=wilzwert_BobApp_frontend
            -Dproject.settings=./sonar-project-frontend.properties
 
-       # quality gate check is performed only when code has actually been pushed to main branch
+      # quality gate check is performed only when code has actually been pushed to main branch
       - name: Quality Gate Check
         if: ${{ github.event_name == 'push' }}
         id: quality-gate

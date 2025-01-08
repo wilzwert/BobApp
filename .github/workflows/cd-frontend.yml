@@ -13,6 +13,7 @@ on:
 jobs:
   # docker image should only be built manually or when CI workflow succeeded on a push event
   # as we must not publish to docker hub on pull requests or when CI workflow is run manually
+  # if at any time we need to manually run CI, then we can also run CD manually if needed
   frontend-build-and-push:
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push') }}
     name: Build and push frontend docker image
