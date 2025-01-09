@@ -203,7 +203,7 @@ Code coverage requirements for tests are set up as follows in `./front/karma.con
 
 Full report of the quality analysis for the main branch frontend is available [here](https://sonarcloud.io/summary/overall?id=wilzwert_BobApp_frontend&branch=main).
 
-A quality gate has been set up with these requirements :
+A quality gate has been set up with these requirements on new code :
 
 | Metric                     | Operator | Value |
 |----------------------------|----------|--------|
@@ -242,25 +242,34 @@ Code coverage requirements for tests ar set up as follows in `./back/pom.xml`:
 
 Full report of the quality analysis for the main branch backend is available [here](https://sonarcloud.io/summary/overall?id=wilzwert_BobApp_backend&branch=main).
 
-A quality gate has been set up with these requirements :
+A quality gate has been set up with requirements below.
+
+For new code : 
 
 | Metric                     | Operator        | Value |
 |----------------------------|-----------------|-------|
-| Coverage                   | is less than    | 30.0% |
+| Coverage                   | is less than    | 80.0% |
 | Duplicated Lines (%)       | is greater than | 3.0%  |
 | Maintainability Rating     | is worse than   | A     |
 | Blocker Issues             | is greater than | 0     |
 | Bugs                       | is greater than | 0     |
-| Critical Issues            | is greater than | 0     |
+| Critical Issues            | is greater than | 1     |
 | Reliability Rating         | is worse than   | A     |
 | Security Hotspots Reviewed | is less than    | 100%  |
 | Security Rating            | is worse than   | A     |
+
+For overall code : 
+| Metric                     | Operator        | Value |
+|----------------------------|-----------------|-------|
+| Coverage                   | is less than    | 30.0% |
+
+
 
 The quality gate passing status is reflected in the badge on top of this README.
 Should the quality gate check fail on push, CI would fail too.
 
 > [!NOTE]
-> The expected code coverage ratio is very low and should be increased as overall code quality increases, as quickly as possible.
+> The expected code coverage ratio on overall code is very low and should be seen as an adjustable goal to increase overall code quality, as quickly as possible.
 
 ## User reviews and issues
 
