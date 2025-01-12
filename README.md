@@ -116,8 +116,8 @@ A single job `frontend-tests-analysis` is set up, and here are the job's steps :
 7. Upload frontend coverage report artifact : make coverage report available as an artifact
 8. Publish frontend coverage report to GitHub Pages.`push` `workflow_dispatch`  *We want Pages to reflect the actual main branch coverage state.*
 9. Upload frontend coverage report to Codecov. `push` `workflow_dispatch`  *We want Codecov to reflect the actual main branch coverage state.*
-10. SonarQube Scan on push to main. `push` `workflow_dispatch` *In that case, the analysis is run on the overall codebase, and is reflected by the badge in this README.*
-11. SonarQube Scan on pull request. `pull_request` *In that case, the analysis is run on new code only, and adds a comment to the PR.*
+10. SonarQube Scan on push to main. `push` `workflow_dispatch`
+11. SonarQube Scan on pull request. `pull_request` *In that case, we send the PR info to SonarQue, which adds a comment to the PR.*
 12. SonarQube Quality Gate Check
 13. Check requirements : fail job if coverage requirements not met. This allows to explicitly specify what went wrong, as we used continue-on-error previously.
 
@@ -134,10 +134,12 @@ It is run when the Frontend CI workflow completes, and may also be run manually.
 A single job `frontend-build-and-push` is set up. It is executed when the CI workflow succeeded on a push event, or manually. Here are the job's steps :
 
 1. Checkout repository : checkout code in the  workflow execution environment
-2. Log in to Docker Hub
-3. Extract frontend docker image metadata from Git reference and GitHub events
-4. Set up Docker Buildx : for extended build capabilities
-5. Build and push frontend image
+2. Setup Node.js
+2. Install dependencies and build Angular project 
+4. Log in to Docker Hub
+5. Extract frontend docker image metadata from Git reference and GitHub events
+6. Set up Docker Buildx : for extended build capabilities
+7. Build and push frontend image
 
 
 ## Backend CI/CD
@@ -179,10 +181,12 @@ It is run when the Backend CI workflow completes, and may also be run manually.
 A single job `backend-build-and-push` is set up. It is executed when the CI workflow succeeded on a push event, or manually. Here are the job's steps :
 
 1. Checkout repository : checkout code in the  workflow execution environment
-2. Log in to Docker Hub
-3. Extract frontend docker image metadata from Git reference and GitHub events
-4. Set up Docker Buildx : for extended build capabilities
-5. Build and push frontend image
+2. Set up JDK 17
+3. Build with Maven
+4. Log in to Docker Hub
+5. Extract frontend docker image metadata from Git reference and GitHub events
+6. Set up Docker Buildx : for extended build capabilities
+7. Build and push frontend image
 
 ## KPIS
 
